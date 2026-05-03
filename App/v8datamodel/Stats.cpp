@@ -849,7 +849,7 @@ static const bool jobsAsArray = true;
 			formatValue(value, "%d", value);
 		}
 
-		#ifdef EMSCRIPTEN
+		#if defined(EMSCRIPTEN) || defined(__EMSCRIPTEN__)
 		template<>
 		void Item::formatValue(const unsigned long& value) {
 			formatValue(value, "%d", value);

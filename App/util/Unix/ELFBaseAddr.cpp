@@ -9,7 +9,7 @@ struct TextSegmentInfo
     bool      found;
 };
 
-#ifdef EMSCRIPTEN
+#if defined(EMSCRIPTEN) || defined(__EMSCRIPTEN__)
 
 uintptr_t staticElfTextVAddr()
 {
