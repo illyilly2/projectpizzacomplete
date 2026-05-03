@@ -455,7 +455,7 @@ DeviceContext* DeviceGL::beginFrame()
 
 void DeviceGL::endFrame()
 {
-#if !defined(RBX_STUDIO_BUILD) && !defined(EMSCRIPTEN) && !defined(ANDROID)
+#if !defined(RBX_STUDIO_BUILD) && !defined(EMSCRIPTEN) && !defined(__EMSCRIPTEN__) && !defined(ANDROID) && !defined(__ANDROID__)
     #if defined(GLES)
         if (frameTimeQueryId)
         {

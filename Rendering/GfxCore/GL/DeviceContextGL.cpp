@@ -428,7 +428,7 @@ void DeviceContextGL::pushDebugMarkerGroup(const char* text)
     {
         glPushGroupMarkerEXT(0, text);
     }
-#elif defined(__ANDROID__) || defined(EMSCRIPTEN)
+#elif defined(__ANDROID__) || defined(EMSCRIPTEN) || defined(__EMSCRIPTEN__)
     ;
 #else
     if (glPushDebugGroup) // Requires GL4.3, because ARB-version does not have marker enums for type
@@ -445,7 +445,7 @@ void DeviceContextGL::popDebugMarkerGroup()
     {
         glPopGroupMarkerEXT();
     }
-#elif defined(__ANDROID__) || defined(EMSCRIPTEN)
+#elif defined(__ANDROID__) || defined(EMSCRIPTEN) || defined(__EMSCRIPTEN__)
     ;
 #else
     if (glPopDebugGroup) // Requires GL4.3, because ARB-version does not have marker enums for type
@@ -462,7 +462,7 @@ void DeviceContextGL::setDebugMarker(const char* text)
     {
         glInsertEventMarkerEXT(0, text);
     }
-#elif defined(__ANDROID__) || defined(EMSCRIPTEN)
+#elif defined(__ANDROID__) || defined(EMSCRIPTEN) || defined(__EMSCRIPTEN__)
     ;
 #else
     if (glDebugMessageInsert) // Requires GL4.3, because ARB-version does not have marker enums for type
