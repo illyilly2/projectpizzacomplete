@@ -79,6 +79,14 @@ namespace rbx
 		inline quick_intrusive_ptr_target() { refs = 0; }
 		friend void rbx::intrusive_ptr_add_ref(const quick_intrusive_ptr_target<T, Count, maxRefs>* p);
 		friend void rbx::intrusive_ptr_release(const quick_intrusive_ptr_target<T, Count, maxRefs>* p);
+		friend void intrusive_ptr_add_ref(const T* p)
+		{
+			rbx::intrusive_ptr_add_ref(static_cast<const quick_intrusive_ptr_target<T, Count, maxRefs>*>(p));
+		}
+		friend void intrusive_ptr_release(const T* p)
+		{
+			rbx::intrusive_ptr_release(static_cast<const quick_intrusive_ptr_target<T, Count, maxRefs>*>(p));
+		}
 	};
 #pragma pack(pop)	
 
@@ -133,6 +141,31 @@ namespace rbx
 		friend bool rbx::intrusive_ptr_expired<>(const intrusive_ptr_target<T, Count, maxStrong, maxWeak>* p);
 		friend bool rbx::intrusive_ptr_try_lock<>(const intrusive_ptr_target<T, Count, maxStrong, maxWeak>* p);
 		friend void rbx::intrusive_ptr_weak_release<>(const intrusive_ptr_target<T, Count, maxStrong, maxWeak>* p);
+
+		friend void intrusive_ptr_add_ref(const T* p)
+		{
+			rbx::intrusive_ptr_add_ref(static_cast<const intrusive_ptr_target<T, Count, maxStrong, maxWeak>*>(p));
+		}
+		friend void intrusive_ptr_release(const T* p)
+		{
+			rbx::intrusive_ptr_release(static_cast<const intrusive_ptr_target<T, Count, maxStrong, maxWeak>*>(p));
+		}
+		friend bool intrusive_ptr_expired(const T* p)
+		{
+			return rbx::intrusive_ptr_expired(static_cast<const intrusive_ptr_target<T, Count, maxStrong, maxWeak>*>(p));
+		}
+		friend bool intrusive_ptr_try_lock(const T* p)
+		{
+			return rbx::intrusive_ptr_try_lock(static_cast<const intrusive_ptr_target<T, Count, maxStrong, maxWeak>*>(p));
+		}
+		friend void intrusive_ptr_add_weak_ref(const T* p)
+		{
+			rbx::intrusive_ptr_add_weak_ref(static_cast<const intrusive_ptr_target<T, Count, maxStrong, maxWeak>*>(p));
+		}
+		friend void intrusive_ptr_weak_release(const T* p)
+		{
+			rbx::intrusive_ptr_weak_release(static_cast<const intrusive_ptr_target<T, Count, maxStrong, maxWeak>*>(p));
+		}
 	};	 
 }
 

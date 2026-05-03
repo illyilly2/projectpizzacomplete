@@ -28,7 +28,7 @@
     #include <mach/mach_time.h>
 #endif // ROBLOX
 
-#ifdef EMSCRIPTEN
+#if defined(EMSCRIPTEN) || defined(__EMSCRIPTEN__) || !defined(_WIN32)
 #include <sys/time.h>
 #endif
 
@@ -126,7 +126,7 @@ private:
     uint64_t  m_start;
     uint64_t  m_counterFrequency;
 #else
-    struct timeval m_start;
+    struct ::timeval m_start;
 #endif
 
     std::string    m_version;
