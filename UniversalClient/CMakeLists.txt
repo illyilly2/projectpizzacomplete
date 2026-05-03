@@ -88,6 +88,7 @@ elseif(EMSCRIPTEN)
         "-sINITIAL_MEMORY=536870912"
         "-sMAX_WEBGL_VERSION=2"
         "-sPTHREAD_POOL_SIZE=100"
+        "-sPROXY_TO_PTHREAD=1"
         "-O1"
     )
 
