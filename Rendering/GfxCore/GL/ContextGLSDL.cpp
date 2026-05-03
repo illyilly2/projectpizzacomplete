@@ -17,7 +17,7 @@ namespace RBX
 				: sdlWindow(reinterpret_cast<SDL_Window*>(windowHandle))
 				, glContext(nullptr)
 			{
-				#ifdef EMSCRIPTEN
+				#if defined(EMSCRIPTEN) || defined(__EMSCRIPTEN__)
 					SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
 					SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 					SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
@@ -38,7 +38,7 @@ namespace RBX
 					throw RBX::runtime_error("SDL_GL_MakeCurrent failed: %s", SDL_GetError());
 				}
 
-				#ifndef EMSCRIPTEN
+				#if !defined(EMSCRIPTEN) && !defined(__EMSCRIPTEN__)
 					SDL_GL_SetSwapInterval(0);
 					glewInitRBX();
 				#endif
