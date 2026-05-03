@@ -90,6 +90,7 @@ elseif(EMSCRIPTEN)
         "-sPTHREAD_POOL_SIZE=16"
         "-sUSE_PTHREADS=1"
         "-sASYNCIFY=1"
+        "-sWASM_OPT_LEVEL=0"
         "-O0"
     )
 
