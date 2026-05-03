@@ -79,13 +79,10 @@ if(WIN32)
         SDL2::SDL2
     )
 elseif(EMSCRIPTEN)
-    # Strip conflicting optimization flags from Release mode, use only -O0 for ASYNCIFY
-    string(REGEX REPLACE "-O[0-3sz]" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
-    string(REGEX REPLACE "-O[0-3sz]" "" CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
-    
-    target_compile_options(UniversalClient PRIVATE
-        $<$<CONFIG:Release>:-O0>
-    )
+    # For ASYNCIFY to work, must use -O0 to avoid wasm-opt memory exhaustion
+    # Explicitly override Release mode optimization
+    set(CMAKE_CXX_FLAGS_RELEASE "-O0" CACHE STRING "" FORCE)
+    set(CMAKE_C_FLAGS_RELEASE "-O0" CACHE STRING "" FORCE)
     
     target_link_options(UniversalClient PRIVATE
         "-Wl,--no-check-features"
