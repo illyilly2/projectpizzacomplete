@@ -665,7 +665,7 @@ void System::cpuid(CPUIDFunction func, uint32& areg, uint32& breg, uint32& creg,
     dreg = static_cast<uint32>(cpuInfo[3]);  // edx
 }
 
-#elif (defined(RBX_PLATFORM_DURANGO) || defined(G3D_OSX) || defined(EMSCRIPTEN) || defined(G3D_IOS) || defined(G3D_ANDROID)) && ! defined(G3D_OSX_INTEL)
+#elif (defined(RBX_PLATFORM_DURANGO) || defined(G3D_OSX) || defined(EMSCRIPTEN) || defined(__EMSCRIPTEN__) || defined(G3D_IOS) || defined(G3D_ANDROID)) && ! defined(G3D_OSX_INTEL)
 
 // no CPUID
 void System::cpuid(CPUIDFunction func, uint32& eax, uint32& ebx, uint32& ecx, uint32& edx) {
