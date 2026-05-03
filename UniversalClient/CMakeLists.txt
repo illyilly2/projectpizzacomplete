@@ -79,6 +79,14 @@ if(WIN32)
         SDL2::SDL2
     )
 elseif(EMSCRIPTEN)
+    # Strip conflicting optimization flags from Release mode, use only -O0 for ASYNCIFY
+    string(REGEX REPLACE "-O[0-3sz]" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+    string(REGEX REPLACE "-O[0-3sz]" "" CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
+    
+    target_compile_options(UniversalClient PRIVATE
+        $<$<CONFIG:Release>:-O0>
+    )
+    
     target_link_options(UniversalClient PRIVATE
         "-Wl,--no-check-features"
         "-sFULL_ES3=1"
@@ -90,7 +98,6 @@ elseif(EMSCRIPTEN)
         "-sPTHREAD_POOL_SIZE=16"
         "-sUSE_PTHREADS=1"
         "-sASYNCIFY=1"
-        "-sWASM_OPT_LEVEL=0"
         "-O0"
     )
 
