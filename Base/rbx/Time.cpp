@@ -386,6 +386,8 @@ void Time::Interval::sleep()
 {
 #if defined(_WIN32)
     Sleep(static_cast<DWORD>(sec * 1e3));
+#elif defined(EMSCRIPTEN)
+    emscripten_sleep(static_cast<unsigned int>(sec * 1e3));
 #else
     std::this_thread::sleep_for(std::chrono::microseconds(static_cast<long long>(sec * 1e6)));
 #endif

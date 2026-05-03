@@ -539,7 +539,9 @@ void System::sleep(RealTime t) {
         }
 
         if (sleepTime >= 0) {
-            #if defined(G3D_WIN32)
+            #ifdef EMSCRIPTEN
+                emscripten_sleep((unsigned int)(sleepTime * 1e3));
+            #elif defined(G3D_WIN32)
                 // Translate to milliseconds
                 Sleep((int)(sleepTime * 1e3));
             #else

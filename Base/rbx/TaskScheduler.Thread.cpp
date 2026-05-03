@@ -312,10 +312,14 @@ void TaskScheduler::Thread::loop()
 				// The most efficient thing is to sleep for a super-short period of time.
 				// This is more efficient than waiting on a mutex, and the timespan is
 				// short enough to make the system responsive.
-				#ifdef _WIN32
-							::Sleep(1);
+				#ifdef EMSCRIPTEN
+							emscripten_sleep(0);
 						#else
-							::usleep(1000);
+							#ifdef _WIN32
+								::Sleep(1);
+							#else
+								::usleep(1000);
+							#endif
 						#endif
 			}
 		}

@@ -1592,7 +1592,11 @@ static void waitForContent(RBX::ContentProvider* contentProvider)
             throw RBX::runtime_error("Timeout while waiting for content - 120 seconds");
         }
 
-boost::this_thread::sleep_for(boost::chrono::milliseconds(20));
+#ifdef __EMSCRIPTEN__
+        emscripten_sleep(20);
+#else
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+#endif
     }
 }
 
