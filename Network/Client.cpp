@@ -172,9 +172,7 @@ shared_ptr<Instance> Client::playerConnect(int userId, std::string server, int s
         Network::versionB = "test";
     }
 
-	#ifdef EMSCRIPTEN
-		server = "127.0.0.1";
-	#endif
+
 
 	RakNet::ConnectionAttemptResult connectRes = rakPeer->rawPeer()->Connect(server.c_str(), serverPort, Network::versionB.c_str(), Network::versionB.size());
 	if (connectRes != RakNet::CONNECTION_ATTEMPT_STARTED)

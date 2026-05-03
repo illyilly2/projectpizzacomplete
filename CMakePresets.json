@@ -1,5 +1,5 @@
 ﻿{
-  "version": 9,
+  "version": 4,
   "configurePresets": [
     {
       "name": "emscripten",
@@ -183,6 +183,6 @@
         "CMAKE_MAKE_PROGRAM": "ninja",
         "VCPKG_TARGET_TRIPLET": "arm64-android"
       }
-    },
+    }
   ]
 }
