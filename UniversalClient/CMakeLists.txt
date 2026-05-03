@@ -86,9 +86,9 @@ elseif(EMSCRIPTEN)
         "-sALLOW_MEMORY_GROWTH=1"
         "-sSTACK_SIZE=1048576"
         "-sINITIAL_MEMORY=536870912"
-        "-sASYNCIFY=1"
         "-sMAX_WEBGL_VERSION=2"
         "-sPTHREAD_POOL_SIZE=100"
+        "-O1"
     )
 
     if(NOT DEFINED FMOD_ROOT)

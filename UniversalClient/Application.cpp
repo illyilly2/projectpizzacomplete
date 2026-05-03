@@ -57,8 +57,6 @@ namespace RBX
 	{
 #ifdef _WIN32
 		Sleep((int)(sleepTime));
-#elif defined(EMSCRIPTEN)
-		emscripten_sleep((int)(sleepTime));
 #else
 		usleep((int)(sleepTime * 1e3));
 #endif
